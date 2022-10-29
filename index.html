@@ -14,12 +14,12 @@
 </head>
 <body>
     <div id="app" class="d-flex flex-column container">
-        <div v-if="hasError" class="alert alert-danger mt-5">Il task deve essere di almeno 3 caratteri</div>
         <div class="d-flex my-5 align-items-center">
             <h2 class="col-4 m-0">To Do List</h2>
             <input v-model="newToDo.text" placeholder="Inserisci una nuova attività" class="col-6 input-group-text" @keyup.enter = "addToDo">
             <button @click="addToDo" class="col-2 btn btn-success mx-3">Aggiungi</button>
         </div>
+        <div v-if="hasError" class="alert alert-danger mb-5">L'attivit&agrave; deve essere di almeno 3 caratteri</div>
         <ul class="list-unstyled" v-if="activities.length > 0">
             <template v-for="(todo, index) in activities" :key="index">
                 <li @mouseover="todo.isMouseOver = false" @mouseleave="todo.isMouseOver = true">
