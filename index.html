@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,600;1,200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Vue To Do List</title>
+</head>
+<body>
+    <div id="app" class="d-flex flex-column container">
+        <div v-if="hasError" class="alert alert-danger mt-5">Il task deve essere di almeno 3 caratteri</div>
+        <div class="d-flex my-5 align-items-center">
+            <h2 class="col-4 m-0">To Do List</h2>
+            <input v-model="newToDo.text" placeholder="Inserisci una nuova attività" class="col-6 input-group-text" @keyup.enter = "addToDo">
+            <button @click="addToDo" class="col-2 btn btn-success mx-3">Aggiungi</button>
+        </div>
+        <ul class="list-unstyled" v-if="activities.length > 0">
+            <template v-for="(todo, index) in activities" :key="index">
+                <li @mouseover="todo.isMouseOver = false" @mouseleave="todo.isMouseOver = true">
+                    <div class="d-flex align-items-center">
+                        <div class="check-task col-1" :class="{'checked-task' : todo.done}" @click="()=>todo.done === true ? todo.done = false : todo.done = true"></div>
+                        <div class="col-9">
+                            <h3 :class="{'text-decoration-line-through' : todo.done}">{{todo.text}}</h3>
+                            <!-- <p>Descrizione</p> -->
+                        </div>
+                        <button class="btn btn-danger col-2" :class="{'d-none' : todo.isMouseOver}" @click="removeToDo(index)">Elimina</button>
+                    </div>
+                </li>
+            </template>
+        </ul>
+        <div v-else="">Non ci sono task</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+html {
+    font-family: 'Raleway', sans-serif;
+}
+
+#app.container {
+    max-width: 680px;
+}
+
+.check-task {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid black;
+    border-radius: 30px;
+    margin-right: 40px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.check-task:hover {
+    content: url(../img/check-solid.svg);
+    background-color: rgb(59, 147, 198);
+}
+
+.checked-task {
+    content: url(../img/check-solid.svg);
+    background-color: rgb(59, 147, 198);
+}
